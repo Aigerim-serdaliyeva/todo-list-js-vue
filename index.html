@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="app" class="container">
+    <form class="form-inline mt-3 mb-3">
+      <input class="form-control mr-sm-2" v-model="searchText" type="search" placeholder="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <div class="input-group mt-3 mb-3">
+      <input type="text" class="form-control" placeholder="add text" v-model="newCar" @keyup.enter="addCar">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" @click="addCar">Add</button>
+      </div>
+    </div>
+  
+    <ul class="list-group">
+      <li class="list-group-item"
+        :style="{textDecoration: car.complete ? 'line-through' : 'none'}"
+        v-for="car in visibleCars"
+      >{{car.name + " " + car.id}}  
+
+      <div class="grow"></div>
+      <button class="btn btn-danger" @click="deleteCar(car.id)">	x </button>
+      <button class="btn btn-success" @click="toggleCar(car.id)">	&#33; </button>
+    </li>
+    </ul>
+
+    <div class="btn-group mt-3">
+      <button type="button" class="btn" :class="filter === 'all' ? 'btn-primary' : 'btn-secondary'" @click="filter = 'all'">All</button>
+      <button type="button" class="btn" :class="filter === 'active' ? 'btn-primary' : 'btn-secondary'" @click="filter = 'active'">Active</button>
+      <button type="button" class="btn" :class="filter === 'complete' ? 'btn-primary' : 'btn-secondary'" @click="filter = 'complete'">Completed</button>
+    </div>
+  </div>
+  
+  <script src="./js/main.js"></script>
+</body>
+</html>

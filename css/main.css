@@ -1,0 +1,8 @@
+.list-group-item {
+  display: flex !important;
+  align-items: center;
+}
+
+.grow {
+  flex-grow: 1;
+}
